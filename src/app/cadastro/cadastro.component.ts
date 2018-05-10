@@ -4,6 +4,9 @@ import { FormControl } from '@angular/forms';
 // PrimeNG
 import { SelectItem } from 'primeng/api';
 
+// App
+import { VeiculoService } from '../veiculo.service';
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -13,7 +16,7 @@ export class CadastroComponent implements OnInit {
 
   montadoras : SelectItem[];
 
-  constructor() { 
+  constructor(private veiculoService: VeiculoService) { 
     this.montadoras = [
       {label: 'Audi', value: 'Audi'},
       {label: 'BMW', value: 'BMW'},
@@ -34,7 +37,11 @@ export class CadastroComponent implements OnInit {
   // Função para adicionar o veículo
   adicionar(form: FormControl) {
     console.log(form.value);
-    form.reset();
+
+    this.veiculoService.adicionar(form.value).subscribe(function() {
+      form.reset();
+
+    });
   }
 
 }
