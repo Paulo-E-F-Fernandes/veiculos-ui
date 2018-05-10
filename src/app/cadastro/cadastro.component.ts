@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 // PrimeNG
 import { SelectItem } from 'primeng/api';
@@ -28,6 +29,12 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  // Função para adicionar o veículo
+  adicionar(form: FormControl) {
+    console.log(form.value);
+    form.reset();
   }
 
 }

@@ -3,7 +3,18 @@ body {
     margin: 0;
 }
 
+/* Adição do asterisco vermelho em todos os label que possuirem a class .required */
 label.required:after {
     content:"*";
     color: red;
+}
+
+/* Customização para exibir os elementos com a class .uppercase com todos os caracteres em caixa alta */
+.uppercase {
+    text-transform: uppercase;
+}
+
+/* Customização para não alterar a caixa do texto do placeholder */
+.uppercase::placeholder {
+    text-transform: none;
 }

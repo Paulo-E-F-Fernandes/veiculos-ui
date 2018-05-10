@@ -1,50 +1,52 @@
-<div class="ui-g">
-  <div class="ui-g-12">
-    <h1>Cadastro</h1>
-  </div><!-- ./ui-g-12 -->
-</div><!-- ./ui-g -->
+<form #form="ngForm" (ngSubmit)="adicionar(form)">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Cadastro</h1>
+    </div><!-- ./ui-g-12 -->
+  </div><!-- ./ui-g -->
 
-<div class="ui-g">
-  <div class="ui-g-2 ui-fluid">
-    <label class="required">Placa</label>
-    <p-inputMask mask="aaa9999" placeholder="Informe a placa" [required]=true></p-inputMask>
-  </div><!-- ./ui-g-2 -->
-  
-  <div class="ui-g-5 ui-fluid">
-    <label class="required">Montadora</label>
-    <p-dropdown [options]="montadoras" placeholder="Selecione..." [filter]="true" [autoWidth]="false" [required]=true></p-dropdown>
-  </div><!-- ./ui-g-5 -->
-  
-  <div class="ui-g-5 ui-fluid">
-    <label class="required">Modelo</label>
-    <input type="text" pInputText placeholder="Informe o modelo" [required]=true />
-  </div><!-- ./ui-g-5 -->
-</div><!-- ./ui-g -->
-  
-<div class="ui-g">
+  <div class="ui-g">
     <div class="ui-g-2 ui-fluid">
-    <label class="required">Ano de fabricação</label>
-    <p-inputMask mask="9999" placeholder="Ano de fabricação" [required]=true></p-inputMask>
-  </div><!-- ./ui-g-2 -->
+      <label class="required">Placa</label>
+      <p-inputMask mask="aaa9999" name="placa" styleClass="uppercase" placeholder="Informe a placa" [required]=true ngModel></p-inputMask>
+    </div><!-- ./ui-g-2 -->
+    
+    <div class="ui-g-5 ui-fluid">
+      <label class="required">Montadora</label>
+      <p-dropdown [options]="montadoras" name="montadora" placeholder="Selecione..." [filter]="true" [autoWidth]="false" [required]=true ngModel></p-dropdown>
+    </div><!-- ./ui-g-5 -->
+    
+    <div class="ui-g-5 ui-fluid">
+      <label class="required">Modelo</label>
+      <input type="text" pInputText name="modelo" placeholder="Informe o modelo" [required]=true ngModel/>
+    </div><!-- ./ui-g-5 -->
+  </div><!-- ./ui-g -->
+    
+  <div class="ui-g">
+      <div class="ui-g-2 ui-fluid">
+      <label class="required">Ano de fabricação</label>
+      <p-inputMask mask="9999" name="anoFabricacao" placeholder="Ano de fabricação" [required]=true ngModel></p-inputMask>
+    </div><!-- ./ui-g-2 -->
 
-  <div class="ui-g-2 ui-fluid">
-    <label class="required">Ano do modelo</label>
-    <p-inputMask mask="9999" placeholder="Ano do modelo" [required]=true></p-inputMask>
-  </div><!-- ./ui-g-2 -->
+    <div class="ui-g-2 ui-fluid">
+      <label class="required">Ano do modelo</label>
+      <p-inputMask mask="9999" name="anoModelo" placeholder="Ano do modelo" [required]=true ngModel></p-inputMask>
+    </div><!-- ./ui-g-2 -->
 
-  <div class="ui-g-3 ui-fluid">
-    <label>Valor de mercado</label>
-    <input type="text" pInputText placeholder="Informe o valor de mercado" />
-  </div><!-- ./ui-g-3 -->
+    <div class="ui-g-3 ui-fluid">
+      <label>Valor de mercado</label>
+      <input type="text" name="valor" pInputText placeholder="Informe o valor de mercado" ngModel/>
+    </div><!-- ./ui-g-3 -->
 
-  <div class="ui-g-5 ui-fluid">
-    <label class="required">Cor</label>
-    <input type="text" pInputText placeholder="Informe a cor" [required]=true/>
-  </div><!-- ./ui-g-5 -->
-</div><!-- ./ui-g -->
+    <div class="ui-g-5 ui-fluid">
+      <label class="required">Cor</label>
+      <input type="text" name="cor" pInputText placeholder="Informe a cor" [required]=true ngModel/>
+    </div><!-- ./ui-g-5 -->
+  </div><!-- ./ui-g -->
 
-<div class="ui-g">
-  <div class="ui-g-12">
-    <button pButton type="button" label="Adicionar"></button>
-  </div>
-</div><!-- ./ui-g -->
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Adicionar" [disabled]="form.invalid"></button>
+    </div>
+  </div><!-- ./ui-g -->
+</form>

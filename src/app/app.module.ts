@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 // PrimeNG
 import { TableModule } from 'primeng/table';
@@ -25,6 +26,7 @@ import { ListagemComponent } from './listagem/listagem.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     // PrimeNG
     TableModule,
