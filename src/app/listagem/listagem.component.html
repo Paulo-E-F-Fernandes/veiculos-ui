@@ -1,0 +1,30 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-table [value]="veiculos" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr>
+          <th rowspan="3">Placa</th>
+          <th rowspan="3">Montadora</th>
+          <th rowspan="3">Modelo</th>
+          <th colspan="2">Ano</th>
+          <th rowspan="3">Ações</th>
+        </tr>
+        <tr>
+          <th>Fabricação</th>
+          <th>Modelo</th>
+        </tr>
+        
+      </ng-template><!-- ./table header -->
+        <ng-template pTemplate="body" let-veiculo>
+          <tr>
+            <td>{{ veiculo.placa }}</td>
+            <td>{{ veiculo.montadora }}</td>
+            <td>{{ veiculo.modelo }}</td>
+            <td>{{ veiculo.anoFabricacao }}</td>
+            <td>{{ veiculo.anoModelo }}</td>
+            <td></td>
+          </tr>
+        </ng-template><!-- ./table body -->
+    </p-table>
+  </div><!-- ./ui-g-12 -->
+</div><!-- ./ui-g -->
