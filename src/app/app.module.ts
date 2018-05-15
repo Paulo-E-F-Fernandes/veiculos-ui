@@ -10,21 +10,25 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
+import { DialogModule } from 'primeng/dialog';
+import { MessagesModule } from 'primeng/messages';
 
 // App
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListagemComponent } from './listagem/listagem.component';
-import { VeiculoService } from './veiculo.service';
-
+import { VeiculoService } from './services/veiculo.service';
+import { MontadoraService } from './services/montadora.service';
+import { VeiculosComponent } from './veiculos/veiculos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CadastroComponent,
-    ListagemComponent
+    ListagemComponent,
+    VeiculosComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +41,13 @@ import { VeiculoService } from './veiculo.service';
     ButtonModule,
     InputTextModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    DialogModule,
+    MessagesModule
   ],
   providers: [
-    VeiculoService
+    VeiculoService,
+    MontadoraService
   ],
   bootstrap: [AppComponent]
 })
