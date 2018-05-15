@@ -16,8 +16,6 @@ import { MessagesModule } from 'primeng/messages';
 // App
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { ListagemComponent } from './listagem/listagem.component';
 import { VeiculoService } from './services/veiculo.service';
 import { MontadoraService } from './services/montadora.service';
 import { VeiculosComponent } from './veiculos/veiculos.component';
@@ -26,8 +24,6 @@ import { VeiculosComponent } from './veiculos/veiculos.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    CadastroComponent,
-    ListagemComponent,
     VeiculosComponent
   ],
   imports: [
