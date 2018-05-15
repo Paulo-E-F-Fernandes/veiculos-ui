@@ -43,7 +43,7 @@
     <div class="ui-g-3 ui-fluid">
       <label>{{ lblValorMercado }}</label>
       <!-- <p-inputMask mask="9,99" name="valor" placeholder="Informe o valor de mercado" ngModel></p-inputMask> -->
-      <input type="text" name="valor" pInputText placeholder="Informe o valor de mercado" ngModel/>
+      <input type="text" name="valor" pInputText (keypress)="numerico($event)" placeholder="Informe o valor de mercado" ngModel/>
     </div><!-- ./ui-g-3 -->
 
     <div class="ui-g-5 ui-fluid">
