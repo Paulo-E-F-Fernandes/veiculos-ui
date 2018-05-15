@@ -1,0 +1,123 @@
+<form #form="ngForm" (ngSubmit)="adicionar(form)">
+  <div class="ui-g">
+    <div class="ui-g-12 center-text">
+      <h1>{{ msgCadastroVeiculo }}</h1>
+    </div><!-- ./ui-g-12 -->
+  </div><!-- ./ui-g -->
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-messages [(value)]="msgs"></p-messages>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-2 ui-fluid">
+      <label class="required" *ngIf="!atualizar">{{ lblPlaca }}</label>
+      <label *ngIf="atualizar">{{ lblPlaca }}</label>
+      <p-inputMask mask="aaa9999" name="placa" styleClass="uppercase" placeholder="Informe a placa" [required]=true ngModel autoFocus="true" [disabled]="atualizar"></p-inputMask>
+    </div><!-- ./ui-g-2 -->
+    
+    <div class="ui-g-5 ui-fluid">
+      <label class="required">{{ lblMontadora }}</label>
+      <p-dropdown [options]="montadoras" name="montadora" placeholder="Selecione..." [filter]="true" [autoWidth]="false" [required]=true ngModel emptyFilterMessage="{{ msgSemRegistros }}"></p-dropdown>
+    </div><!-- ./ui-g-5 -->
+    
+    <div class="ui-g-5 ui-fluid">
+      <label class="required">{{ lblModelo }}</label>
+      <input type="text" pInputText name="modelo" placeholder="Informe o modelo" [required]=false ngModel/>
+    </div><!-- ./ui-g-5 -->
+  </div><!-- ./ui-g -->
+    
+  <div class="ui-g">
+      <div class="ui-g-2 ui-fluid">
+      <label class="required">{{ lblAnoFabricacao }}</label>
+      <p-inputMask mask="9999" name="anoFabricacao" placeholder="Ano de fabricação" [required]=true ngModel></p-inputMask>
+    </div><!-- ./ui-g-2 -->
+
+    <div class="ui-g-2 ui-fluid">
+      <label class="required">{{ lblAnoModelo }}</label>
+      <p-inputMask mask="9999" name="anoModelo" placeholder="Ano do modelo" [required]=true ngModel></p-inputMask>
+    </div><!-- ./ui-g-2 -->
+
+    <div class="ui-g-3 ui-fluid">
+      <label>{{ lblValorMercado }}</label>
+      <!-- <p-inputMask mask="9,99" name="valor" placeholder="Informe o valor de mercado" ngModel></p-inputMask> -->
+      <input type="text" name="valor" pInputText placeholder="Informe o valor de mercado" ngModel/>
+    </div><!-- ./ui-g-3 -->
+
+    <div class="ui-g-5 ui-fluid">
+      <label class="required">{{ lblCor }}</label>
+      <input type="text" name="cor" pInputText placeholder="Informe a cor" [required]=true ngModel/>
+    </div><!-- ./ui-g-5 -->
+  </div><!-- ./ui-g -->
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <button pButton type="submit" label="{{ btnAdicionar }}" [disabled]="form.invalid" *ngIf="!atualizar"></button>
+      <button pButton type="submit" label="{{ btnAtualizar }}" [disabled]="form.invalid" *ngIf="atualizar"></button>
+      <button pButton type="button" label="{{ btnCancelar }}" (click)="cancelarEdicao(form)" *ngIf="atualizar"></button>
+    </div>
+  </div><!-- ./ui-g -->
+</form>
+
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-table [value]="veiculos" [paginator]="true" [rows]="10" [lazy]="true" [loading]="loading">
+      <ng-template pTemplate="header">
+        <tr>
+          <th rowspan="2">{{ lblPlaca }}</th>
+          <th rowspan="2">{{ lblMontadora }}</th>
+          <th rowspan="2">{{ lblModelo }}</th>
+          <th colspan="2">{{ lblAno }}</th>
+          <th rowspan="2">{{ lblAcoes }}</th>
+        </tr>
+        <tr>
+          <th>{{ lblFabricacao }}</th>
+          <th>{{ lblModelo }}</th>
+        </tr>  
+      </ng-template><!-- ./table header -->
+      <ng-template pTemplate="body" let-veiculo>
+        <tr>
+          <td>{{ veiculo.placa }}</td>
+          <td>{{ veiculo.montadora.nome }}</td>
+          <td>{{ veiculo.modelo }}</td>
+          <td>{{ veiculo.anoFabricacao }}</td>
+          <td>{{ veiculo.anoModelo }}</td>
+          <td>
+            <button pButton icon="fa-search" (click)="visualizar(veiculo)"></button>
+            <button pButton icon="fa-pencil-square-o" (click)="editar(form, veiculo)"></button>
+            <button pButton icon="fa-times" (click)="deletar(veiculo)"></button>
+          </td>
+        </tr>
+      </ng-template><!-- ./table body -->
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td colspan="6" class="center-text">
+            {{ msgSemRegistros }}
+          </td>
+        </tr>
+      </ng-template><!-- ./table emptymessage -->
+    </p-table>
+  </div><!-- ./ui-g-12 -->
+</div><!-- ./ui-g -->
+
+<p-dialog header="{{ lblVeiculoDetalhe }}" styleClass="ui-g-6" [(visible)]="visualizarVeiculo" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-g ui-fluid" *ngIf="veiculoSelecionado">
+    <div class="ui-g-12"><span class="ui-g-3 label">{{ lblPlaca }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.placa }}</span></div>
+
+    <div class="ui-g-12 odd"><span class="ui-g-3 label">{{ lblMontadora }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.montadora.nome }}</span></div>
+
+    <div class="ui-g-12"><span class="ui-g-3 label">{{ lblModelo }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.modelo }}</span></div>
+    
+    <div class="ui-g-12 odd"><span class="ui-g-3 label">{{ lblAnoFabricacao }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.anoFabricacao }}</span></div>
+    
+    <div class="ui-g-12"><span class="ui-g-3 label">{{ lblAnoModelo }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.anoModelo }}</span></div>
+    
+    <div class="ui-g-12 odd"><span class="ui-g-3 label">{{ lblValor }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.valor | currency:'BRL':true }}</span></div>
+    
+    <div class="ui-g-12"><span class="ui-g-3 label">{{ lblCor }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.cor }}</span></div>
+    
+    <div class="ui-g-12 odd"><span class="ui-g-3 label">{{ lblUltimaAlteracao }}</span><span class="ui-g-9 bold-text">{{ veiculoSelecionado.dataAlteracao | date:'dd/MM/yyyy HH:mm:ss' }}</span></div>
+  </div><!-- ./ui-g -->
+</p-dialog>

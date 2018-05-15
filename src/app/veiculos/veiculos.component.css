@@ -1,0 +1,15 @@
+.bold-text {
+    font-weight: bold;
+}
+
+.center-text {
+    text-align: center;
+}
+
+span.label:after {
+    content:":";
+}
+
+.odd {
+    background-color: #f0f2f4;
+}
